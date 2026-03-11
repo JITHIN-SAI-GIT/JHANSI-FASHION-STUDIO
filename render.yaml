@@ -22,11 +22,12 @@ services:
         value: production
 
   # Frontend static site
-  - type: static
+  - type: web
     name: jhansi-fashion-frontend
+    runtime: static
     rootDir: project
     buildCommand: npm install && npm run build
-    publishPath: dist
+    staticPublishPath: dist
     envVars:
       - key: VITE_API_URL
         fromService:
