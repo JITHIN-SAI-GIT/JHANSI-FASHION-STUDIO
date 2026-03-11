@@ -31,9 +31,8 @@ services:
     envVars:
       - key: VITE_API_URL
         fromService:
-          type: web
           name: jhansi-fashion-backend
-          property: host
+          type: web
     routes:
       - type: rewrite
         source: /*
