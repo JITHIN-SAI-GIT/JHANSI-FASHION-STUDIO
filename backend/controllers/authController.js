@@ -27,7 +27,7 @@ export const registerUser = async (req, res) => {
       username,
       email,
       password,
-      role: 'USER' // Default role for signup
+      role: email === 'jhansiphotography1125@gmail.com' ? 'OWNER' : 'USER'
     });
 
     if (user) {
@@ -54,6 +54,12 @@ export const authUser = async (req, res) => {
     const user = await User.findOne({ email });
 
     if (user && (await user.matchPassword(password))) {
+      // Auto-promote to OWNER if email matches
+      if (user.email === 'jhansiphotography1125@gmail.com' && user.role !== 'OWNER') {
+        user.role = 'OWNER';
+        await user.save();
+      }
+
       res.json({
         _id: user._id,
         username: user.username,
@@ -99,11 +105,17 @@ export const googleAuth = async (req, res) => {
         username,
         email,
         googleId,
-        role: 'USER'
+        role: email === 'jhansiphotography1125@gmail.com' ? 'OWNER' : 'USER'
       });
     } else if (!user.googleId) {
       // If user exists but signed up with email, link Google ID
       user.googleId = googleId;
+      await user.save();
+    }
+
+    // Auto-promote to OWNER if email matches
+    if (user.email === 'jhansiphotography1125@gmail.com' && user.role !== 'OWNER') {
+      user.role = 'OWNER';
       await user.save();
     }
 
