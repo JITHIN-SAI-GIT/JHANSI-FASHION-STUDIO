@@ -22,7 +22,7 @@ import Signup from './pages/Signup';
 import AdminDashboard from './pages/AdminDashboard';
 
 // Placeholder - User will replace with actual ID
-const GOOGLE_CLIENT_ID = "448652763901-8d097v886vjuigkdom0o7jlknback2nv.apps.googleusercontent.com";
+const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID || "448652763901-8d097v886vjuigkdom0o7jlknback2nv.apps.googleusercontent.com";
 
 function App() {
   useEffect(() => {

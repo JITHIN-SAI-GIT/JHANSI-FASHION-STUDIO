@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
+        const userInfo = JSON.parse(localStorage.getItem('userInfo'));
         if (userInfo) {
             setUser(userInfo);
         }
@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
         try {
             const { data } = await authService.login({ email, password });
             setUser(data);
-            sessionStorage.setItem('userInfo', JSON.stringify(data));
+            localStorage.setItem('userInfo', JSON.stringify(data));
             toast.success('Logged in successfully');
             return data;
         } catch (error) {
@@ -33,7 +33,7 @@ export const AuthProvider = ({ children }) => {
         try {
             const { data } = await authService.signup({ username, email, password });
             setUser(data);
-            sessionStorage.setItem('userInfo', JSON.stringify(data));
+            localStorage.setItem('userInfo', JSON.stringify(data));
             toast.success('Signed up successfully');
             return data;
         } catch (error) {
@@ -46,7 +46,7 @@ export const AuthProvider = ({ children }) => {
         try {
             const { data } = await authService.googleLogin(idToken);
             setUser(data);
-            sessionStorage.setItem('userInfo', JSON.stringify(data));
+            localStorage.setItem('userInfo', JSON.stringify(data));
             toast.success('Logged in with Google');
             return data;
         } catch (error) {
@@ -57,7 +57,7 @@ export const AuthProvider = ({ children }) => {
 
     const logout = () => {
         setUser(null);
-        sessionStorage.removeItem('userInfo');
+        localStorage.removeItem('userInfo');
         toast.success('Logged out');
     };
 

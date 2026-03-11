@@ -33,6 +33,8 @@ services:
         fromService:
           name: jhansi-fashion-backend
           type: web
+      - key: VITE_GOOGLE_CLIENT_ID
+        value: 448652763901-8d097v886vjuigkdom0o7jlknback2nv.apps.googleusercontent.com
     routes:
       - type: rewrite
         source: /*
