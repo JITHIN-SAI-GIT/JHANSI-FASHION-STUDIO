@@ -16,7 +16,9 @@ export default function Reviews() {
   const fetchReviews = async () => {
     try {
       const { data } = await ratingService.getAllReviews();
-      setReviews(data);
+      if (Array.isArray(data)) {
+        setReviews(data);
+      }
     } catch (error) {
       console.error('Failed to fetch reviews');
     } finally {
