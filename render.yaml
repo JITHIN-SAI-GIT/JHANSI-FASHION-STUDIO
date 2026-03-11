@@ -33,7 +33,6 @@ services:
           type: web
           name: jhansi-fashion-backend
           property: host
-        value: /api
     routes:
       - type: rewrite
         source: /*
