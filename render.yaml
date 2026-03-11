@@ -21,7 +21,7 @@ services:
         value: production
 
   # Frontend service
-  - type: static
+  - type: web
     name: jhansi-fashion-frontend
     env: static
     plan: free
