@@ -23,11 +23,18 @@ export default function Home() {
           settingsService.get(),
           projectService.getAll()
         ]);
-        setFeaturedReviews(reviewsRes.data.slice(0, 3));
+        
+        if (Array.isArray(reviewsRes.data)) {
+          setFeaturedReviews(reviewsRes.data.slice(0, 3));
+        }
+        
         setSettings(settingsRes.data);
-        setProjects(projectsRes.data);
+        
+        if (Array.isArray(projectsRes.data)) {
+          setProjects(projectsRes.data);
+        }
       } catch (error) {
-        console.error('Failed to fetch home data');
+        console.error('Failed to fetch home data:', error);
       }
     };
     fetchData();
@@ -53,8 +60,8 @@ export default function Home() {
     return videoMedia ? videoMedia.url.replace(/\.[^/.]+$/, ".jpg") : '';
   };
 
-  const featuredProjects = projects.slice(0, 6);
-  const instagramProjects = projects.slice(0, 8);
+  const featuredProjects = Array.isArray(projects) ? projects.slice(0, 6) : [];
+  const instagramProjects = Array.isArray(projects) ? projects.slice(0, 8) : [];
 
   return (
     <div className="bg-black text-white">

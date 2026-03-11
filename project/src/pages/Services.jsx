@@ -15,7 +15,7 @@ const Services = () => {
   const fetchServices = async () => {
     try {
       const { data } = await serviceService.getAll();
-      setServices(data || []);
+      setServices(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error('Failed to fetch services:', error);
     } finally {

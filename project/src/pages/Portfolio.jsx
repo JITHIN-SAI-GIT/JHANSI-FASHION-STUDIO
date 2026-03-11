@@ -146,7 +146,9 @@ export default function Portfolio() {
     setLoading(true);
     try {
       const { data } = await categoryService.getAll();
-      setCategories(data);
+      if (Array.isArray(data)) {
+        setCategories(data);
+      }
     } catch (error) {
       console.error('Failed to fetch categories');
     } finally {
@@ -158,7 +160,9 @@ export default function Portfolio() {
     setLoading(true);
     try {
       const { data } = await projectService.getAll(categoryParam);
-      setProjects(data);
+      if (Array.isArray(data)) {
+        setProjects(data);
+      }
     } catch (error) {
       toast.error('Failed to load projects');
     } finally {
