@@ -2,7 +2,7 @@ services:
   # Backend service
   - type: web
     name: jhansi-fashion-backend
-    env: node
+    runtime: node
     plan: free
     buildCommand: cd backend && npm install
     startCommand: cd backend && node index.js
@@ -23,8 +23,7 @@ services:
   # Frontend service
   - type: web
     name: jhansi-fashion-frontend
-    env: static
-    plan: free
+    runtime: static
     buildCommand: cd project && npm install && npm run build
     staticPublishPath: project/dist
     envVars:
