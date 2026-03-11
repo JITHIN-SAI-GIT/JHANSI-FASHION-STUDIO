@@ -4,8 +4,9 @@ services:
     name: jhansi-fashion-backend
     runtime: node
     plan: free
-    buildCommand: cd backend && npm install
-    startCommand: cd backend && node index.js
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: node index.js
     envVars:
       - key: MONGODB_URI
         sync: false
@@ -20,12 +21,12 @@ services:
       - key: NODE_ENV
         value: production
 
-  # Frontend service
-  - type: web
+  # Frontend static site
+  - type: static
     name: jhansi-fashion-frontend
-    runtime: static
-    buildCommand: cd project && npm install && npm run build
-    staticPublishPath: project/dist
+    rootDir: project
+    buildCommand: npm install && npm run build
+    publishPath: dist
     envVars:
       - key: VITE_API_URL
         fromService:
