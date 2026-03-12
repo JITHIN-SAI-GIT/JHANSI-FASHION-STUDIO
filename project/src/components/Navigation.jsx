@@ -42,8 +42,8 @@ export default function Navigation() {
       className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-black/95 backdrop-blur-sm shadow-lg' : 'bg-transparent'
         }`}
     >
-      <div className="max-w-[1400px] mx-auto px-2 md:px-4 lg:px-8">
-        <div className="flex justify-between items-center py-4">
+      <div className="max-w-[1440px] mx-auto px-4 md:pl-2 lg:pl-4 md:pr-4 lg:pr-8">
+        <div className="flex justify-between items-center py-5 md:py-6">
           <Link to="/" className="flex items-center gap-1.5 group">
             <img 
               src="/images/logoo.jpeg" 
