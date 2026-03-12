@@ -19,11 +19,13 @@ export const AuthProvider = ({ children }) => {
     const login = async (email, password) => {
         try {
             const { data } = await authService.login({ email, password });
+            console.log('Login successful, user data:', data);
             setUser(data);
             localStorage.setItem('userInfo', JSON.stringify(data));
             toast.success('Logged in successfully');
             return data;
         } catch (error) {
+            console.error('Login error:', error.response?.data || error.message);
             toast.error(error.response?.data?.error || 'Login failed');
             throw error;
         }
@@ -32,11 +34,13 @@ export const AuthProvider = ({ children }) => {
     const signup = async (username, email, password) => {
         try {
             const { data } = await authService.signup({ username, email, password });
+            console.log('Signup successful, user data:', data);
             setUser(data);
             localStorage.setItem('userInfo', JSON.stringify(data));
             toast.success('Signed up successfully');
             return data;
         } catch (error) {
+            console.error('Signup error:', error.response?.data || error.message);
             toast.error(error.response?.data?.error || 'Signup failed');
             throw error;
         }
@@ -45,11 +49,13 @@ export const AuthProvider = ({ children }) => {
     const googleLogin = async (idToken) => {
         try {
             const { data } = await authService.googleLogin(idToken);
+            console.log('Google Login successful, user data:', data);
             setUser(data);
             localStorage.setItem('userInfo', JSON.stringify(data));
             toast.success('Logged in with Google');
             return data;
         } catch (error) {
+            console.error('Google login error:', error.response?.data || error.message);
             toast.error('Google login failed');
             throw error;
         }

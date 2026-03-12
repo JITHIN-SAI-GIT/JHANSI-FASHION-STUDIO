@@ -3,7 +3,16 @@ import axios from 'axios';
 const getApiUrl = () => {
   const envUrl = import.meta.env.VITE_API_URL;
   if (!envUrl) return 'http://localhost:5000/api/';
-  return envUrl.endsWith('/api/') ? envUrl : (envUrl.endsWith('/api') ? `${envUrl}/` : `${envUrl}/api/`);
+  
+  // Ensure the URL starts with http and ends with /api/
+  let formattedUrl = envUrl.trim();
+  if (!formattedUrl.startsWith('http')) {
+    formattedUrl = `https://${formattedUrl}`;
+  }
+  
+  if (formattedUrl.endsWith('/api/')) return formattedUrl;
+  if (formattedUrl.endsWith('/api')) return `${formattedUrl}/`;
+  return `${formattedUrl}/api/`;
 };
 
 const API_URL = getApiUrl();

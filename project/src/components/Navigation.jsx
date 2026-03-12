@@ -72,32 +72,37 @@ export default function Navigation() {
             ))}
 
             {user ? (
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-6">
                 {isOwner && (
                   <Link
                     to="/admin"
-                    className="text-gray-300 hover:text-amber-500 p-2 transition-colors flex items-center gap-1 text-sm uppercase tracking-wider"
+                    className="text-gray-300 hover:text-amber-500 p-2 transition-colors flex items-center gap-1 text-sm uppercase tracking-wider bg-white/5 rounded-lg px-3"
                   >
                     <Settings size={18} />
                     <span>Admin</span>
                   </Link>
                 )}
-                <div className="flex items-center gap-2 text-white border-l border-neutral-800 pl-4 ml-2">
-                  <User size={18} className="text-amber-500" />
-                  <span className="text-sm font-medium">{user.username}</span>
+                <div className="flex items-center gap-3 text-white border-l border-neutral-800 pl-6 ml-2 group relative">
+                  <div className="flex items-center gap-2 cursor-default">
+                    <div className="w-8 h-8 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-500 border border-amber-500/20">
+                      <User size={16} />
+                    </div>
+                    <span className="text-sm font-bold tracking-tight text-amber-500">{user.username}</span>
+                  </div>
+                  
                   <button
                     onClick={handleLogout}
-                    className="ml-2 text-gray-400 hover:text-red-500 transition-colors"
-                    title="Logout"
+                    className="flex items-center gap-2 bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-tighter transition-all duration-300 border border-red-500/20"
                   >
-                    <LogOut size={18} />
+                    <LogOut size={14} />
+                    <span>Logout</span>
                   </button>
                 </div>
               </div>
             ) : (
               <Link
                 to="/login"
-                className="bg-black hover:bg-neutral-900 text-white px-6 py-2 text-sm uppercase tracking-wider font-semibold transition-all duration-300"
+                className="bg-white/5 hover:bg-white/10 text-white px-6 py-2 text-sm uppercase tracking-wider font-semibold transition-all duration-300 border border-white/10 rounded-full"
               >
                 Login
               </Link>
@@ -105,7 +110,7 @@ export default function Navigation() {
 
             <Link
               to="/booking"
-              className="bg-amber-500 hover:bg-amber-600 text-black px-6 py-2 text-sm uppercase tracking-wider font-semibold transition-all duration-300 hover:scale-105"
+              className="bg-amber-500 hover:bg-amber-600 text-black px-6 py-2 text-sm uppercase tracking-wider font-semibold transition-all duration-300 hover:scale-105 rounded-full shadow-lg shadow-amber-500/20"
             >
               Book Session
             </Link>
