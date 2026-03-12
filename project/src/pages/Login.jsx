@@ -32,34 +32,55 @@ const Login = () => {
     };
 
     return (
-        <div className="min-h-screen bg-black flex items-center justify-center px-4 pt-20">
+        <div className="relative min-h-screen bg-black flex items-center justify-center px-4 overflow-hidden">
+            {/* Background Logo Decoration */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.03] select-none">
+                <img 
+                    src="/images/logoo.jpeg" 
+                    alt="" 
+                    className="w-[150%] max-w-none transform rotate-12"
+                />
+            </div>
+
+            {/* Ambient Glows */}
+            <div className="absolute top-1/4 -left-20 w-80 h-80 bg-gold/10 rounded-full blur-[100px]" />
+            <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-amber-500/10 rounded-full blur-[100px]" />
+
             <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="max-w-md w-full bg-black/50 backdrop-blur-md p-8 rounded-2xl border border-neutral-800"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+                className="relative max-w-md w-full bg-neutral-900/40 backdrop-blur-xl p-8 md:p-10 rounded-3xl border border-white/5 shadow-2xl"
             >
-                <div className="text-center mb-8">
-                    <div className="inline-flex items-center justify-center mb-4">
-                        <img 
-                            src="/images/logoo.jpeg" 
-                            alt="Jhansi Fashion Studio Logo" 
-                            className="h-[60px] md:h-[80px] w-auto object-contain transition-transform duration-300 hover:scale-105" 
-                        />
-                    </div>
-                    <h1 className="text-3xl font-bold text-white mb-2">Welcome Back</h1>
-                    <p className="text-neutral-400">Sign in to your account</p>
+                <div className="text-center mb-10">
+                    <motion.div 
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.2 }}
+                        className="inline-flex items-center justify-center mb-6"
+                    >
+                        <div className="p-3 bg-white/5 rounded-2xl border border-white/10 ring-1 ring-white/5">
+                            <img 
+                                src="/images/logoo.jpeg" 
+                                alt="Jhansi Fashion Studio Logo" 
+                                className="h-16 w-auto object-contain" 
+                            />
+                        </div>
+                    </motion.div>
+                    <h1 className="text-3xl font-serif text-white mb-2 tracking-tight">Welcome Back</h1>
+                    <p className="text-neutral-500 text-sm">Experience the art of timeless photography</p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-5">
                     <div>
-                        <label className="block text-sm font-medium text-neutral-400 mb-2">Email Address</label>
-                        <div className="relative">
-                            <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-500" size={20} />
+                        <label className="block text-xs font-semibold text-neutral-500 uppercase tracking-widest mb-2.5 ml-1">Email Address</label>
+                        <div className="relative group">
+                            <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-500 group-focus-within:text-gold transition-colors" size={18} />
                             <input
                                 type="email"
                                 required
-                                className="w-full bg-neutral-900 border border-neutral-800 rounded-lg py-3 pl-10 pr-4 text-white focus:outline-none focus:border-gold transition-colors"
-                                placeholder="you@example.com"
+                                className="w-full bg-white/5 border border-white/10 rounded-xl py-3.5 pl-12 pr-4 text-white placeholder:text-neutral-600 focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-gold/20 transition-all"
+                                placeholder="name@example.com"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                             />
@@ -67,13 +88,13 @@ const Login = () => {
                     </div>
 
                     <div>
-                        <label className="block text-sm font-medium text-neutral-400 mb-2">Password</label>
-                        <div className="relative">
-                            <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-500" size={20} />
+                        <label className="block text-xs font-semibold text-neutral-500 uppercase tracking-widest mb-2.5 ml-1">Password</label>
+                        <div className="relative group">
+                            <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-500 group-focus-within:text-gold transition-colors" size={18} />
                             <input
                                 type="password"
                                 required
-                                className="w-full bg-neutral-900 border border-neutral-800 rounded-lg py-3 pl-10 pr-4 text-white focus:outline-none focus:border-gold transition-colors"
+                                className="w-full bg-white/5 border border-white/10 rounded-xl py-3.5 pl-12 pr-4 text-white placeholder:text-neutral-600 focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-gold/20 transition-all"
                                 placeholder="••••••••"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
@@ -83,35 +104,37 @@ const Login = () => {
 
                     <button
                         type="submit"
-                        className="w-full bg-gold hover:bg-gold/90 text-black font-semibold py-3 rounded-lg transition-colors flex items-center justify-center gap-2"
+                        className="w-full bg-gold hover:bg-gold/90 text-black font-bold py-4 rounded-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-gold/20 flex items-center justify-center gap-2 mt-2"
                     >
-                        Sign In
+                        <LogIn size={18} />
+                        <span>Sign In</span>
                     </button>
                 </form>
 
-                <div className="mt-8">
+                <div className="mt-10">
                     <div className="relative mb-8">
                         <div className="absolute inset-0 flex items-center">
-                            <div className="w-full border-t border-neutral-800"></div>
+                            <div className="w-full border-t border-white/5"></div>
                         </div>
-                        <div className="relative flex justify-center text-sm">
-                            <span className="px-2 bg-neutral-900/50 text-neutral-500">Or continue with</span>
+                        <div className="relative flex justify-center text-[10px] uppercase tracking-widest text-neutral-600">
+                            <span className="px-4 bg-transparent backdrop-blur-md">Secure Login</span>
                         </div>
                     </div>
 
-                    <div className="flex justify-center">
+                    <div className="flex justify-center transform transition-transform hover:scale-[1.02]">
                         <GoogleLogin
                             onSuccess={handleGoogleSuccess}
                             onError={() => console.log('Login Failed')}
                             theme="filled_black"
                             shape="pill"
+                            width="100%"
                         />
                     </div>
                 </div>
 
-                <p className="mt-8 text-center text-neutral-400">
+                <p className="mt-10 text-center text-sm text-neutral-500">
                     Don't have an account?{' '}
-                    <Link to="/signup" className="text-gold hover:underline">Sign up</Link>
+                    <Link to="/signup" className="text-gold hover:text-gold/80 font-medium transition-colors">Create one</Link>
                 </p>
             </motion.div>
         </div>

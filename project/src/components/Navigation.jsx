@@ -50,7 +50,8 @@ export default function Navigation() {
               alt="Jhansi Fashion Studio" 
               className="h-[40px] md:h-[50px] w-auto object-contain transition-transform duration-300 group-hover:scale-105"
             />
-            <span className="text-lg md:text-xl lg:text-2xl font-serif text-white tracking-wide whitespace-nowrap">𝐉𝐡𝐚𝐧𝐬𝐢 𝐅𝐚𝐬𝐡𝐢𝐨𝐧 𝐒𝐭𝐮𝐝𝐢𝐨</span>
+            <span className="hidden lg:block text-2xl font-serif text-white tracking-wide whitespace-nowrap">𝐉𝐡𝐚𝐧𝐬𝐢 𝐅𝐚𝐬𝐡𝐢𝐨𝐧 𝐒𝐭𝐮𝐝𝐢𝐨</span>
+            <span className="block lg:hidden text-lg font-serif text-white tracking-wide whitespace-nowrap">𝐉𝐡𝐚𝐧𝐬𝐢 𝐅𝐚𝐬𝐡𝐢𝐨𝐧</span>
           </Link>
 
           <div className="hidden md:flex items-center space-x-2 lg:space-x-8">
@@ -58,7 +59,7 @@ export default function Navigation() {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`text-[11px] lg:text-sm uppercase tracking-wider transition-colors relative group ${location.pathname === link.path
+                className={`text-[10px] lg:text-sm uppercase tracking-wider transition-colors relative group ${location.pathname === link.path
                   ? 'text-amber-500'
                   : 'text-gray-300 hover:text-white'
                   }`}
