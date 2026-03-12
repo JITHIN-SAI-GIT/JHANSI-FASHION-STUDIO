@@ -42,23 +42,23 @@ export default function Navigation() {
       className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-black/95 backdrop-blur-sm shadow-lg' : 'bg-transparent'
         }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 md:px-2 lg:px-8">
         <div className="flex justify-between items-center py-4">
-          <Link to="/" className="flex items-center gap-2 group">
+          <Link to="/" className="flex items-center gap-1.5 group">
             <img 
               src="/images/logoo.jpeg" 
               alt="Jhansi Fashion Studio" 
               className="h-[40px] md:h-[50px] w-auto object-contain transition-transform duration-300 group-hover:scale-105"
             />
-            <span className="text-xl lg:text-2xl font-serif text-white tracking-wide whitespace-nowrap">𝐉𝐡𝐚𝐧𝐬𝐢 𝐅𝐚𝐬𝐡𝐢𝐨𝐧 𝐒𝐭𝐮𝐝𝐢𝐨</span>
+            <span className="text-lg md:text-xl lg:text-2xl font-serif text-white tracking-wide whitespace-nowrap">𝐉𝐡𝐚𝐧𝐬𝐢 𝐅𝐚𝐬𝐡𝐢𝐨𝐧 𝐒𝐭𝐮𝐝𝐢𝐨</span>
           </Link>
 
-          <div className="hidden md:flex items-center space-x-4 lg:space-x-8">
+          <div className="hidden md:flex items-center space-x-2 lg:space-x-8">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`text-sm uppercase tracking-wider transition-colors relative group ${location.pathname === link.path
+                className={`text-[11px] lg:text-sm uppercase tracking-wider transition-colors relative group ${location.pathname === link.path
                   ? 'text-amber-500'
                   : 'text-gray-300 hover:text-white'
                   }`}
