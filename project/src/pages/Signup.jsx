@@ -28,7 +28,7 @@ const Signup = () => {
     return (
         <div className="relative min-h-screen bg-black flex items-center justify-center px-4 overflow-hidden">
             {/* Background Logo Decoration */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.03] select-none">
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.07] select-none">
                 <img 
                     src="/images/logoo.jpeg" 
                     alt="" 
