@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { MapPin, Phone, Mail, Clock, Instagram, Facebook } from 'lucide-react';
 import Section from '../components/ui/Section';
 import Button from '../components/ui/Button';
-import { settingsService } from '../services/api';
+import { settingsService, contactService } from '../services/api';
 
 export default function Contact() {
   const [settings, setSettings] = useState(null);
@@ -41,18 +41,12 @@ export default function Contact() {
     setSubmitStatus('idle');
 
     try {
-      const response = await fetch('http://localhost:5000/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          subject: formData.subject,
-          message: formData.message,
-        }),
+      const response = await contactService.send({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        subject: formData.subject,
+        message: formData.message,
       });
 
       if (!response.ok) {

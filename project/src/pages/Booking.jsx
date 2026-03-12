@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Calendar, MapPin, Mail, Phone, User, MessageSquare } from 'lucide-react';
 import Section from '../components/ui/Section';
 import Button from '../components/ui/Button';
+import { bookingService } from '../services/api';
 
 export default function Booking() {
   const [formData, setFormData] = useState({
@@ -29,21 +30,15 @@ export default function Booking() {
     setSubmitStatus('idle');
 
     try {
-      const response = await fetch('http://localhost:5000/api/bookings', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          event_type: formData.eventType,
-          event_date: formData.eventDate,
-          location: formData.location,
-          message: formData.message,
-          status: 'pending',
-        }),
+      const response = await bookingService.create({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        event_type: formData.eventType,
+        event_date: formData.eventDate,
+        location: formData.location,
+        message: formData.message,
+        status: 'pending',
       });
 
       if (!response.ok) {
